@@ -1,19 +1,23 @@
 const { chromium } = require("playwright");
+const path = require("path");
 
 (async () => {
   // Launch the browser
   const browser = await chromium.launch();
-
-  // Create a new browser context in full screen
   const context = await browser.newContext({
-    viewport: null, // Fullscreen viewport
+    viewport: {
+      width: 800,
+      height: 600,
+    },
   });
-
-  // Create a new page in the context
   const page = await context.newPage();
 
-  // Go to the desired URL
-  await page.goto("https://playwright.dev/docs/browser-contexts");
+  // Use path.join to ensure cross-platform compatibility for the file path
+  const filePath = path.join(__dirname, "code.html");
+  const fileUrl = `file://${filePath}`;
+
+  // Go to the local HTML file
+  await page.goto(fileUrl);
 
   // Take a screenshot and save it as "screenshot.png"
   await page.screenshot({ path: "./snapshots/screenshot.png", fullPage: true });
