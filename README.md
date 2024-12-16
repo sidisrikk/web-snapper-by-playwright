@@ -16,6 +16,19 @@ A simple web-based screenshot capture tool that allows users to take and manage 
 2. Open `code.html` in your web browser
 3. Click the capture button to take a screenshot
 
-## Usage
+## Docker Setup
 
-Simply click the capture button when you want to take a screenshot. The captured image will be displayed for preview before saving.
+### Build the Docker Image
+```bash
+docker build -t playwright-screenshot .
+```
+
+### Run the Container
+```bash
+docker run -it --rm --name playwright-screenshot-container -v ./snapshots:/usr/src/app/snapshots playwright-screenshot
+```
+
+This command will:
+- Create a container named `playwright-screenshot-container`
+- Mount the local `snapshots` directory to store captured screenshots
+- Remove the container automatically when it stops
