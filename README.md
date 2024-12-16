@@ -28,3 +28,6 @@ This command will:
 - Create a container named `playwright-screenshot-container`
 - Mount the local `snapshots` directory to store captured screenshots
 - Remove the container automatically when it stops
+
+## Future Improvements
+- Service receives HTML code from REST API and responds with a screenshot as a base64 encoded image
